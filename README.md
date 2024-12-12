@@ -37,27 +37,43 @@ git clone https://github.com/sseey/Health-Calculator.git
 cd Health-Calculator
 ```
 
-### 2. **Créer un environnement virtuel**
-Créez un environnement Python isolé :
-```bash
-python3 -m venv venv
-source venv/bin/activate  # Sur Linux/MacOS
-venv\Scripts\activate    # Sur Windows
-```
+### 2. **Utiliser le Makefile pour automatiser l'installation**
+Un fichier `Makefile` est fourni pour simplifier l'installation, l'exécution et les tests du projet. Voici les principales commandes que vous pouvez utiliser :
 
-### 3. **Installer les dépendances**
-Installez les dépendances requises depuis `requirements.txt` :
+#### **a. Créer un environnement virtuel**
+Pour créer un environnement Python isolé :
 ```bash
-pip install -r requirements.txt
+make venv
 ```
+- Cette commande créera un environnement virtuel dans un dossier nommé `venv`.
 
-### 4. **Lancer l'application Flask**
-Démarrez le serveur Flask localement :
+#### **b. Installer les dépendances**
+Pour installer les dépendances du projet (listées dans `requirements.txt`) :
 ```bash
-python app.py
+make install
 ```
+- Cette commande installe toutes les bibliothèques requises pour exécuter l'application.
 
-L'application sera disponible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000).
+#### **c. Lancer l'application Flask**
+Pour démarrer le serveur Flask :
+```bash
+make run
+```
+- Cette commande exécute l'application Flask localement. L'application sera disponible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+#### **d. Exécuter les tests unitaires**
+Pour lancer les tests unitaires du projet :
+```bash
+make test
+```
+- Cette commande exécute tous les tests présents dans le dossier `tests/` et vérifie que les calculs et les endpoints fonctionnent correctement.
+
+#### **e. Nettoyer le projet**
+Pour supprimer l'environnement virtuel et les fichiers temporaires générés :
+```bash
+make clean
+```
+- Cette commande supprime le dossier `venv` et les fichiers `__pycache__`.
 
 ---
 
@@ -69,7 +85,7 @@ Tous les tests unitaires sont regroupés dans le répertoire `tests/`.
 #### Lancer les tests unitaires :
 Depuis la racine du projet, exécutez :
 ```bash
-python -m unittest discover -s tests
+make test
 ```
 
 #### Détails des tests :
@@ -110,6 +126,9 @@ Accédez à [http://127.0.0.1:5000](http://127.0.0.1:5000) pour utiliser l'appli
 4. **Docker** :
    - Pour containeriser l'application et simplifier son déploiement.
 
+5. **Makefile** :
+   - Automatisation des tâches comme l'installation, les tests et l'exécution de l'application.
+
 ---
 
 ## **Détails des fichiers du projet**
@@ -136,7 +155,9 @@ Accédez à [http://127.0.0.1:5000](http://127.0.0.1:5000) pour utiliser l'appli
 6. **`requirements.txt`** :
    - Liste des dépendances Python requises pour exécuter l'application.
 
----
+7. **`Makefile`** :
+   - Fichier d'automatisation pour simplifier les tâches courantes.
+
 
 ## **Justification pour les tests séparés**
 
@@ -150,11 +171,6 @@ Les tests sont organisés dans deux fichiers distincts pour améliorer la lisibi
    - Se concentre sur l'API Flask.
    - Valide que les endpoints fonctionnent correctement avec des requêtes HTTP (cas valides et invalides).
 
-**Avantages de cette approche :**
-- Favorise une responsabilité unique par fichier.
-- Facilite le débogage en cas d'échec d'un test.
-- Rend le projet plus modulaire et maintenable.
-
 ---
 
 ## **Sources**
@@ -162,4 +178,3 @@ Les tests sont organisés dans deux fichiers distincts pour améliorer la lisibi
 - https://www.sololearn.com/en/discuss/2686226/bmi-calculator-python-beginner-project
 - https://docs.python.org/3/library/unittest.html
 - https://hub.docker.com/_/python
-- 
