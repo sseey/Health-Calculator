@@ -44,4 +44,13 @@ def bmr():
         height = float(data['height'])
         weight = float(data['weight'])
         age = int(data['age'])
-        gender = str(data['gen
+        gender = str(data['gender'])
+        result = calculate_bmr(height, weight, age, gender)
+        return jsonify({"bmr": result}), 200
+    except KeyError:
+        return jsonify({"error": "Veuillez fournir 'height', 'weight', 'age', et 'gender'."}), 400
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
