@@ -1,5 +1,5 @@
 # Utiliser une image de base Python compatible avec Python 3.12
-FROM python:latest
+FROM python:3.12-slim
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /app
