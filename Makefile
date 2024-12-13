@@ -29,7 +29,7 @@ build:
 
 # Lancer le conteneur Docker
 run-container:
-	docker run -d -p $(PORT):5000 --name $(CONTAINER_NAME) $(DOCKER_IMAGE)
+	docker run -d -p $(PORT):5001 --name $(CONTAINER_NAME) $(DOCKER_IMAGE)
 	@echo "Conteneur $(CONTAINER_NAME) lancé sur le port $(PORT)."
 
 # Arrêter et supprimer le conteneur Docker

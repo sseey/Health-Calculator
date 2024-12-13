@@ -55,7 +55,7 @@ jobs:
       # Lancer le conteneur Docker
       - name: Run Docker container
         run: |
-          docker run -d -p 5000:5000 --name health-calculator-container health-calculator
+          docker run -d -p 5001:5001 --name health-calculator-container health-calculator
 
       # Attendre le démarrage du conteneur
       - name: Wait for Docker container to start
@@ -65,7 +65,7 @@ jobs:
       - name: Test API endpoints in Docker
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d '{"height": 1.75, "weight": 70}' http://127.0.0.1:5000/bmi
+          -d '{"height": 1.75, "weight": 70}' http://127.0.0.1:5001/bmi
 
       # Nettoyer le conteneur Docker
       - name: Clean up Docker
