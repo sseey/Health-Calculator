@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5001
 
 # Commande pour lancer l'application
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
