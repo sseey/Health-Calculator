@@ -59,7 +59,7 @@ jobs:
 
       # Attendre le démarrage du conteneur
       - name: Wait for Docker container to start
-        run: sleep 5
+        run: sleep 15
 
       # Tester les endpoints API dans le conteneur
       - name: Test API endpoints in Docker
