@@ -37,63 +37,90 @@ git clone https://github.com/sseey/Health-Calculator.git
 cd Health-Calculator
 ```
 
-### 2. **Utiliser le Makefile pour automatiser l'installation**
-Un fichier `Makefile` est fourni pour simplifier l'installation, l'exécution et les tests du projet. Voici les principales commandes que vous pouvez utiliser :
+### 2. **Utiliser le Makefile pour automatiser la gestion du projet**
 
-#### **a. Créer un environnement virtuel**
-Pour créer un environnement Python isolé :
+Un fichier `Makefile` est fourni pour simplifier l'installation, l'exécution, les tests et la gestion du projet. Voici les principales commandes que vous pouvez utiliser :
+
+#### **a. Initialiser le projet**
 ```bash
-make venv
+make init
 ```
-- Cette commande créera un environnement virtuel dans un dossier nommé `venv`.
+- Crée un environnement virtuel dans un dossier nommé `venv`.
+- Installe les dépendances listées dans `requirements.txt`.
 
-#### **b. Installer les dépendances**
-Pour installer les dépendances du projet (listées dans `requirements.txt`) :
-```bash
-make install
-```
-- Cette commande installe toutes les bibliothèques requises pour exécuter l'application.
-
-#### **c. Lancer l'application Flask**
-Pour démarrer le serveur Flask :
+#### **b. Lancer l'application Flask**
 ```bash
 make run
 ```
-- Cette commande exécute l'application Flask localement. L'application sera disponible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000).
+- Exécute l'application Flask localement dans l'environnement virtuel.
+- Accessible à l'adresse : [http://127.0.0.1:5000](http://127.0.0.1:5000).
+- Si le port 5000 est occupé, modifiez le fichier `.env` pour choisir un autre port.
 
-#### **d. Exécuter les tests unitaires**
-Pour lancer les tests unitaires du projet :
-```bash
-make test
-```
-- Cette commande exécute tous les tests présents dans le dossier `tests/` et vérifie que les calculs et les endpoints fonctionnent correctement.
+#### **c. Construire et gérer l'application avec Docker**
+
+- **Construire l'image Docker :**
+  ```bash
+  make build
+  ```
+  - Génère une image Docker basée sur l'application.
+
+- **Lancer le conteneur Docker :**
+  ```bash
+  make run-container
+  ```
+  - Démarre un conteneur Docker exposant l'application sur le port configuré dans `.env`.
+
+- **Arrêter et supprimer le conteneur Docker :**
+  ```bash
+  make stop-container
+  ```
+  - Arrête le conteneur Docker en cours d'exécution et le supprime.
+
+#### **d. Exécuter les tests**
+
+- **Tests unitaires :**
+  ```bash
+  make test
+  ```
+  - Exécute les tests présents dans le dossier `tests/` pour vérifier les fonctionnalités (BMI, BMR, endpoints).
+
+- **Tests API avec `curl` :**
+  ```bash
+  make test-api
+  ```
+  - Envoie des requêtes aux endpoints `/bmi` et `/bmr` pour vérifier leur bon fonctionnement.
 
 #### **e. Nettoyer le projet**
-Pour supprimer l'environnement virtuel et les fichiers temporaires générés :
 ```bash
 make clean
 ```
-- Cette commande supprime le dossier `venv` et les fichiers `__pycache__`.
+- Supprime :
+  - Le dossier `venv`.
+  - Les caches Python (`__pycache__`).
+  - Les fichiers PID (`flask.pid`).
+
+#### **f. Obtenir de l'aide**
+```bash
+make help
+```
+- Affiche un résumé de toutes les commandes disponibles.
 
 ---
 
-## **Tester l'application**
-
-### 1. **Tests unitaires**
-Tous les tests unitaires sont regroupés dans le répertoire `tests/`.
-
-#### Lancer les tests unitaires :
-Depuis la racine du projet, exécutez :
-```bash
-make test
+### **Astuce : Utilisation du fichier `.env`**
+Le fichier `.env` est utilisé pour configurer des paramètres comme le port ou le nom du conteneur Docker. Exemple de contenu :
+```env
+PORT=XXX
+CONTAINER_NAME=X X X
 ```
+
 
 #### Détails des tests :
 - **`tests/test_health_utils.py`** : Tests unitaires pour les fonctions de calcul du BMI et BMR.
 - **`tests/test_app.py`** : Tests des endpoints de l'API Flask.
 
 ### 2. **Tester via le navigateur**
-Accédez à [http://127.0.0.1:5000](http://127.0.0.1:5000) pour utiliser l'interface utilisateur simplifiée avec des formulaires HTML.
+Accédez à [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ### 3. **Tester via Docker**
 
